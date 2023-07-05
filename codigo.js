@@ -21,32 +21,32 @@ while (variedad != 't'){
 
     switch (variedad){
         case '1':
-            alert ('Wedding Cake (pack x 3), agregado al carrito');
             sumarTotalCompra(6500);
+            alert ('Wedding Cake (pack x 3), agregado al carrito. Subtotal hasta el momento $'+totalCompra);
             break;    
         case '2':
-            alert('Gelato (pack x 3), agregado al carrito');
             sumarTotalCompra(7500);
+            alert('Gelato (pack x 3), agregado al carrito. Subtotal hasta el momento $'+totalCompra);
             break;
         case '3':
-            alert('Sour Diesel (pack x 3), agregado al carrito');
             sumarTotalCompra(6000);
+            alert('Sour Diesel (pack x 3), agregado al carrito. Subtotal hasta el momento $'+totalCompra);
             break;
         case '4':
-            alert('OG Kush (pack x 3), agregado al carrito');
             sumarTotalCompra(6500);
+            alert('OG Kush (pack x 3), agregado al carrito. Subtotal hasta el momento $'+totalCompra);
             break;
         case '5':
-            alert('Jack Herer (pack x 3), agregado al carrito');
             sumarTotalCompra(8000);
+            alert('Jack Herer (pack x 3), agregado al carrito. Subtotal hasta el momento $'+totalCompra);
             break;
         case '6':
-            alert('Northern Lights (pack x 3), agregado al carrito');
             sumarTotalCompra(7000);
+            alert('Northern Lights (pack x 3), agregado al carrito. Subtotal hasta el momento $'+totalCompra);
             break;
         case '7':
-            alert('MAC (pack x 3), agregado al carrito');
             sumarTotalCompra(7500);
+            alert('MAC (pack x 3), agregado al carrito. Subtotal hasta el momento $'+totalCompra);
             break;
         default:
             alert('Codigo inexistente');
@@ -57,36 +57,41 @@ while (variedad != 't'){
 
 function sumarTotalCompra(precioSema){
     totalCompra = totalCompra + precioSema;
-    alert('Subtotal hasta el momento $'+totalCompra);
 }
 
 alert('Total de tu compra: $'+ totalCompra);
 
 let medioDePago = prompt('Ingrese medio de pago (tarjeta - efectivo - transferencia)');
+let cuotas;
 
 
-    switch(medioDePago){
-        case 'transferencia':
-            alert('Abonaras la cantiad de $' + totalCompra);
-        case 'efectivo':
-            descontarPagoEfectivo();
-            break;
-        case 'tarjeta':
-            let cuotas = prompt('Ingrese N° de cuotas: 1-3-6');
-            if (cuotas = '1'){
-                alert('Abonaras 1 cuota de $' + totalCompra);
-                break;
-            }else if (cuotas = '3'){
-                recargarEn3cuotas();
-                break;
-            }else if (cuotas = '6'){
-                alert('Abonaras 6 cuotas de $'+'Recargo de 60%');
-            }else{
-                alert('Ingrese N° de cuotas: 1-3-6');
-            }
-        default:
-            alert('Ingresa el medio de pago!');    
-    }
+
+switch(medioDePago){
+    case 'transferencia':
+        alert('Abonaras la cantiad de $' + totalCompra);
+        break;
+    case 'efectivo':
+        descontarPagoEfectivo();
+        break;
+    case 'tarjeta':
+        cuotas = prompt('Ingrese N° de cuotas: 1-3-6');
+        break;
+    default:
+        alert('Ingresa el medio de pago!');
+}
+
+
+switch(cuotas){
+    case '1':    
+        alert('Abonaras 1 cuota de $' + totalCompra);
+        break;
+    case '3':
+        recargarEn3cuotas();
+        break;
+    case '6':
+        recargarEn6cuotas();
+    default:
+}
 
 function descontarPagoEfectivo(){
     totalCompra = totalCompra * 0.9;
@@ -95,5 +100,10 @@ function descontarPagoEfectivo(){
 
 function recargarEn3cuotas(){
     totalCompra = (totalCompra + totalCompra * 0.3)/3;
-    alert('abonaras 3 cuotas de $');
+    alert('abonaras 3 cuotas de $' + totalCompra);
+}
+
+function recargarEn6cuotas(){
+    totalCompra = (totalCompra + totalCompra * 0.6)/6;
+    alert('abonaras 6 cuotas de $' + totalCompra);
 }
